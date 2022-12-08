@@ -1,0 +1,221 @@
+:root {
+  /* font */
+  --header-font: "Comfortaa", cursive;
+  --content-font: "Nunito Sans", helvetica, arial, sans-serif;
+  --base-font-size: 1rem;
+  --large-font-size: 1.2rem;
+  --small-font-size: 0.875rem;
+  --base-line-height: 1.2;
+  --a11y-line-height: 1.5;
+  --regular-font-weight: 400;
+  --bold-font-weight: 700;
+  --heading-h1-font-size: 1.5rem;
+  --heading-h2-font-size: 1.25rem;
+
+  /* color */
+  --text-primary: #16161d;
+  --anchor-link: #1e90ff;
+  --anchor-visited: #a029de;
+  --background-primary: #fff;
+  --background-secondary: rgba(22, 22, 29, 0.25);
+  --shadow-screenshot: 0 16px 16px -8px #ccc;
+  --shadow-screenshot-hover: 0 8px 16px #ccc;
+}
+
+/* || reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a:link {
+    color: #1e90ff;
+    color: var(--anchor-link);
+    text-decoration: none;
+  }
+
+a:visited {
+    color: #a029de;
+    color: var(--anchor-visited);
+  }
+
+a:focus {
+    outline-color: currentcolor;
+    outline-offset: 2px;
+  }
+
+a:hover,
+  a:active {
+    text-decoration: underline;
+    -webkit-text-decoration: underline solid currentColor;
+            text-decoration: underline solid currentColor;
+    text-decoration-thickness: 2px;
+  }
+
+/* || custom components: title, project */
+.title {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  font-weight: 400;
+  font-weight: var(--regular-font-weight);
+  font-size: 1.25rem;
+  font-size: var(--heading-h2-font-size);
+  line-height: 1.2;
+  line-height: var(--base-line-height);
+  opacity: 0.75;
+}
+.title::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 50%;
+    z-index: -1;
+    display: block;
+    inline-size: max(0px, min(100%, 400px));
+    block-size: 1px;
+    background-color: rgba(22, 22, 29, 0.25);
+    background-color: var(--background-secondary);
+  }
+.title span {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #fff;
+    background-color: var(--background-primary);
+  }
+
+.project {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-gap: 20px;
+  gap: 20px;
+  align-items: center;
+  padding-block: 24px;
+}
+
+.project .preview .screenshot {
+      inline-size: max(140px, min(calc(140px + 4vw), 170px));
+      block-size: auto;
+      border-radius: 4px;
+      vertical-align: bottom;
+      box-shadow: 0 16px 16px -8px #ccc;
+      box-shadow: var(--shadow-screenshot);
+      transform: scale(0.95);
+      transition: all 150ms ease;
+    }
+
+.project .preview:hover .screenshot {
+      box-shadow: 0 8px 16px #ccc;
+      box-shadow: var(--shadow-screenshot-hover);
+      transform: scale(1);
+    }
+
+.project:nth-child(even) {
+    direction: rtl;
+  }
+
+/* || the page: Vanilla Web Projects */
+body {
+  /* sticky footer */
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center;
+  min-block-size: 100vh;
+  padding: 24px 24px 36px;
+  margin: 0;
+  font: 400 1rem / 1.5 "Nunito Sans", helvetica, arial, sans-serif;
+  font: var(--regular-font-weight) var(--base-font-size) / var(--a11y-line-height) var(--content-font);
+  color: #16161d;
+  color: var(--text-primary);
+}
+
+header {
+  display: grid;
+  grid-gap: 16px;
+  gap: 16px;
+  justify-items: center;
+  padding-block: 24px;
+  font-family: "Comfortaa", cursive;
+  font-family: var(--header-font);
+  text-align: center;
+}
+
+header .logo {
+    inline-size: 64px;
+    block-size: auto;
+    border-radius: 50%;
+  }
+
+header .slogan {
+    margin: 0;
+    font-weight: 400;
+    font-weight: var(--regular-font-weight);
+    font-size: 1.5rem;
+    font-size: var(--heading-h1-font-size);
+    line-height: 1.2;
+    line-height: var(--base-line-height);
+  }
+
+section {
+  font-size: 1.2rem;
+  font-size: var(--large-font-size);
+}
+
+section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+main {
+  max-inline-size: 560px;
+  -webkit-margin-before: 24px;
+          margin-block-start: 24px;
+}
+
+main .vanilla-web-projects {
+    -webkit-padding-before: 8px;
+            padding-block-start: 8px;
+  }
+
+footer {
+  -webkit-margin-before: 36px;
+          margin-block-start: 36px;
+  text-align: center;
+}
+
+footer .contact {
+    padding: 16px 24px;
+    font-style: normal;
+  }
+
+footer > span {
+    display: inline-block;
+    -webkit-margin-before: 48px;
+            margin-block-start: 48px;
+    font-size: 0.875rem;
+    font-size: var(--small-font-size);
+  }
+
+/* || responsive design */
+@media screen and (min-width: 450px) {
+  .project {
+    padding-block: 16px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    max-inline-size: unset;
+  }
+
+  .project {
+    grid-template-columns: minmax(min-content, 1fr) 300px 1fr;
+    gap: 40px;
+    padding-block: 8px;
+  }
+}
