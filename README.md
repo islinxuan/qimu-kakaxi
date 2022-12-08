@@ -1,5 +1,7 @@
 # Qimu Kakaxi
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/islinxuan/qimu-kakaxi/pages%20build%20and%20deployment?label=gh-pages%20deploy&logo=github)
+
 使用 HTML5，[postcss-preset-env](https://preset-env.cssdb.org/)（默认 Stage 2 功能 & CSS 嵌套规则）和 [Vanilla JS](http://vanilla-js.com/) 练习前端开发。
 
 如果你有任何想法，欢迎新开 [Issues](https://github.com/islinxuan/qimu-kakaxi/issues) 探讨，多谢！
