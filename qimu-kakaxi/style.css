@@ -14,10 +14,11 @@
 
   /* color */
   --text-primary: #16161d;
+  --text-secondary: #505056;
   --anchor-link: #1e90ff;
   --anchor-visited: #a029de;
   --background-primary: #fff;
-  --background-secondary: rgba(22, 22, 29, 0.25);
+  --background-secondary: #d4d4d4;
   --shadow-screenshot: 0 16px 16px -8px #ccc;
   --shadow-screenshot-hover: 0 8px 16px #ccc;
 }
@@ -58,9 +59,11 @@ a:hover,
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-block: 10px;
   margin: 0;
   font-weight: 400;
   font-weight: var(--regular-font-weight);
@@ -68,40 +71,39 @@ a:hover,
   font-size: var(--heading-h2-font-size);
   line-height: 1.2;
   line-height: var(--base-line-height);
-  opacity: 0.75;
+  color: #505056;
+  color: var(--text-secondary);
+  text-align: center;
 }
-.title::before {
+.title::after,
+  .title::before {
     content: "";
-    position: absolute;
-    inset-block-start: 50%;
-    z-index: -1;
-    display: block;
-    inline-size: max(0px, min(100%, 400px));
+    inline-size: max(0px, min(100%, 125px));
     block-size: 1px;
-    background-color: rgba(22, 22, 29, 0.25);
+    background-color: #d4d4d4;
     background-color: var(--background-secondary);
-  }
-.title span {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #fff;
-    background-color: var(--background-primary);
   }
 
 .project {
   display: grid;
-  grid-template-columns: min-content 1fr;
+  grid-template: "intro preview" auto / 1fr min-content;
   grid-gap: 20px;
   gap: 20px;
   align-items: center;
   padding-block: 24px;
+  max-inline-size: 560px;
+  margin-inline: auto;
 }
 
+.project .preview {
+    grid-area: preview;
+  }
+
 .project .preview .screenshot {
-      inline-size: max(140px, min(calc(140px + 4vw), 170px));
+      inline-size: max(140px, min(calc(140px + 4vi), 170px));
       block-size: auto;
-      border-radius: 4px;
       vertical-align: bottom;
+      border-radius: 4px;
       box-shadow: 0 16px 16px -8px #ccc;
       box-shadow: var(--shadow-screenshot);
       transform: scale(0.95);
@@ -114,16 +116,22 @@ a:hover,
       transform: scale(1);
     }
 
-.project:nth-child(even) {
-    direction: rtl;
+.project .intro {
+    grid-area: intro;
   }
+
+.project:nth-child(odd) {
+    grid-template: "preview intro" auto / min-content 1fr;
+  }
+
+.project:nth-child(odd) .preview {
+      justify-self: end;
+    }
 
 /* || the page: Vanilla Web Projects */
 body {
-  /* sticky footer */
   display: grid;
   grid-template-rows: auto 1fr auto;
-  justify-items: center;
   min-block-size: 100vh;
   padding: 24px 24px 36px;
   margin: 0;
@@ -172,7 +180,6 @@ section ul {
   }
 
 main {
-  max-inline-size: 560px;
   -webkit-margin-before: 24px;
           margin-block-start: 24px;
 }
@@ -209,13 +216,14 @@ footer > span {
 }
 
 @media screen and (min-width: 768px) {
-  main {
+  .project {
+    grid-template: ". intro preview" auto / 1fr 300px minmax(min-content, 1fr);
+    gap: 36px;
+    padding-block: 8px;
     max-inline-size: unset;
   }
 
-  .project {
-    grid-template-columns: minmax(min-content, 1fr) 300px 1fr;
-    gap: 40px;
-    padding-block: 8px;
-  }
+    .project:nth-child(odd) {
+      grid-template: "preview intro ." auto / minmax(min-content, 1fr) 300px 1fr;
+    }
 }
